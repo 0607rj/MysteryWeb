@@ -1,97 +1,143 @@
-* {
+/* Basic setup */
+body, html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
   width: 100%;
-  overflow: hidden;
+  height: 100%;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: black;
+  color: #00ff00;
 }
 
 .background {
   position: relative;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  background-color: black;
-  background-image: url('background.png'); /* Path to your background image */
-  background-size: cover; /* Ensures the image covers the entire viewport */
-  background-position: top; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents the image from repeating */
-  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background: url('new.png'), black;
+  background-size: cover;
+  animation: matrixEffect 10s linear infinite;
 }
 
+/* Background animation */
+@keyframes matrixEffect {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 1000px; }
+}
+
+/* Processing text */
+.processing {
+  font-size: 2rem;
+  margin: 20px;
+  color: #00ff00;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.dots::after {
+  content: "....";
+  animation: dotsAnimation 2s infinite steps(4);
+}
+
+@keyframes dotsAnimation {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75% { content: "..."; }
+  100% { content: "...."; }
+}
+
+/* Title */
+.art-title {
+  text-align: center;
+  color: #ff0000;
+  font-size: 1.5rem;
+  margin-top: -10px;
+  text-shadow: 0 0 10px red;
+}
+
+/* Art Card */
 .art-card {
-  position: absolute;
-  top: 50%;
-  left: 20%;
-  transform: translate(-50%, -50%);
-  max-width: 300px;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  z-index: 1;
-  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
 }
 
 .art-card img {
-  width: 400px;
+  width: 300px;
   height: auto;
-  border-radius: 5px;
-  display: block;
+  border: 3px solid #00ff00;
+  box-shadow: 0px 0px 20px #00ff00;
+  transition: transform 0.3s ease;
 }
 
-/* Hidden clues (initially hidden) */
-.clue1, .clue2, .clue3 {
-  position: absolute;
-  bottom: 20%;
-  width: 100%;
+.art-card img:hover {
+  transform: scale(1.05);
+}
+
+/* Info Text */
+.info-text {
+  width: 80%;
+  margin: 20px auto;
   text-align: center;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.clue1 {
-  display: none; /* Hidden clue */
-}
-
-.clue2 {
-  visibility: hidden; /* Another hidden clue */
-}
-
-.clue3 {
-  opacity: 0; /* Third hidden clue */
-}
-
-/* Text in the right bottom corner */
-.hidden-text {
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-  font-size: 18px;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.6);
   padding: 10px;
-  border-radius: 5px;
-  opacity: 0;
+  border: 1px dashed #00ff00;
+  animation: fadeIn 3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Fake hover clues */
+.hover-fake-1, .hover-fake-2 {
+  margin: 20px;
+  padding: 10px;
+  /* background-color: rgba(255, 0, 0, 0.2); */
+  /* border: 1px solid red; */
+  display: inline-block;
+  color: #00ff00;
   cursor: pointer;
-  z-index: 2;
-  transition: opacity 0.3s ease;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
-/* Make the text visible when hovered */
-.hidden-text:hover {
-  opacity: 1;
+.fake-clue-text {
+  display: none;
+  font-size: 0.9rem;
+  margin-top: 5px;
+  color: red;
 }
 
-/* Make clues visible when hovering on the text */
-.hidden-text:hover ~ .background .clue1,
-.hidden-text:hover ~ .background .clue2,
-.hidden-text:hover ~ .background .clue3 {
+.hover-fake-1:hover .fake-clue-text,
+.hover-fake-2:hover .fake-clue-text {
   display: block;
-  visibility: visible;
-  opacity: 1;
+}
+
+/* Hint Text */
+.hint-text {
+  margin: 30px auto;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #00ff00;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border: 1px dashed #00ff00;
+}
+
+/* Hidden Shadow Text */
+.shadow-text {
+  display: none;
+}
+
+/* Hidden extra divs */
+.hidden-div, .hidden-text {
+  display: none;
 }
