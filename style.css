@@ -15,20 +15,19 @@ body, html {
   height: 100%;
   background: url('new.png'), black;
   background-size: cover;
+  background-position: center;
   animation: matrixEffect 10s linear infinite;
 }
 
-/* Background animation */
 @keyframes matrixEffect {
   0% { background-position: 0 0; }
   100% { background-position: 0 1000px; }
 }
 
-/* Processing text */
+/* Processing animation */
 .processing {
   font-size: 2rem;
   margin: 20px;
-  color: #00ff00;
   animation: pulse 1.5s infinite;
 }
 
@@ -38,6 +37,7 @@ body, html {
   100% { opacity: 1; }
 }
 
+/* Dots effect */
 .dots::after {
   content: "....";
   animation: dotsAnimation 2s infinite steps(4);
@@ -51,7 +51,7 @@ body, html {
   100% { content: "...."; }
 }
 
-/* Title */
+/* Title and card */
 .art-title {
   text-align: center;
   color: #ff0000;
@@ -60,7 +60,6 @@ body, html {
   text-shadow: 0 0 10px red;
 }
 
-/* Art Card */
 .art-card {
   display: flex;
   justify-content: center;
@@ -69,6 +68,7 @@ body, html {
 
 .art-card img {
   width: 300px;
+  max-width: 90%;
   height: auto;
   border: 3px solid #00ff00;
   box-shadow: 0px 0px 20px #00ff00;
@@ -79,7 +79,7 @@ body, html {
   transform: scale(1.05);
 }
 
-/* Info Text */
+/* Info section */
 .info-text {
   width: 80%;
   margin: 20px auto;
@@ -96,34 +96,8 @@ body, html {
   to { opacity: 1; }
 }
 
-/* Fake hover clues */
-.hover-fake-1, .hover-fake-2 {
-  margin: 20px;
-  padding: 10px;
-  /* background-color: rgba(255, 0, 0, 0.2); */
-  /* border: 1px solid red; */
-  display: inline-block;
-  color: #00ff00;
-  cursor: pointer;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.fake-clue-text {
-  display: none;
-  font-size: 0.9rem;
-  margin-top: 5px;
-  color: red;
-}
-
-.hover-fake-1:hover .fake-clue-text,
-.hover-fake-2:hover .fake-clue-text {
-  display: block;
-}
-
-/* Hint Text */
 .hint-text {
-  margin: 30px auto;
+  margin: 150px auto 30px auto;
   text-align: center;
   font-size: 1.2rem;
   color: #00ff00;
@@ -132,12 +106,80 @@ body, html {
   border: 1px dashed #00ff00;
 }
 
-/* Hidden Shadow Text */
-.shadow-text {
+/* Hidden utility elements */
+.shadow-text,
+.hidden-div,
+.hidden-text {
   display: none;
 }
 
-/* Hidden extra divs */
-.hidden-div, .hidden-text {
-  display: none;
+/* Misleading clues (hidden by default) */
+.misleading {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: auto;
+  z-index: 10;
+   color: transparent;  
+  overflow: hidden;
+  /* color: #ff0000; */
 }
+
+/* Clue 1 - Top left corner-ish */
+.clue-1 {
+  top: 15%;
+  left: 10%;
+}
+
+/* Clue 2 - Bottom right area */
+.clue-2 {
+  bottom: 20%;
+  right: 15%;
+}
+
+/* Clue 3 - Mid-right area */
+.clue-3 {
+  top: 55%;
+  left: 65%;
+}
+
+/* Make clue text visible on hover */
+.clue-1:hover,
+.clue-2:hover,
+.clue-3:hover {
+  width: auto;
+  height: auto;
+  padding: 8px 12px;
+  color: rgb(249, 8, 8);
+  /* background: rgba(0, 0, 0, 0.7); */
+  border-radius: 10px;
+  opacity: 1;}
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
